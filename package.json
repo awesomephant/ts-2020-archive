@@ -5,8 +5,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build:webpack": "webpack --mode production",
         "build:eleventy": "npx @11ty/eleventy",
+        "build:webpack": "webpack --mode production",
+        "build:sass": "sass ./css/style.scss ./_site/style.css --no-source-map",
         "watch:webpack": "webpack --watch --mode development",
         "watch:sass": "sass ./css/style.scss ./_site/style.css --watch --no-source-map",
         "watch:eleventy": "npx @11ty/eleventy --serve --quiet",
