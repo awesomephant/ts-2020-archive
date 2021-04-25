@@ -1,0 +1,30 @@
+{% for r in responses %}
+<section class="work pv pv-response">
+    <button data-cursorText="Guest Response" class='toggleArtistResponse'>{+}</button>
+    
+    <section data-section='Images' {% if r.text != "" %}data-controls="description"{% else %}data-controls="author"{%endif%} data-cursorText="arrowRight" data-brackets='[]'
+        class="work-section work-images">
+        {% assign images = r.images | split: ";" %}
+        {% for img in images %}
+            {% fig img %}
+        {% endfor %}
+    </section>
+
+    {% if r.text != "" %}
+    <section data-section='Text' data-controls="author" data-cursorText="arrowRight" data-brackets='[]'
+        class="work-section work-description">
+        {% capture desc %}{{r.text | escape | newline_to_br | strip_newlines}}{% endcapture %}
+        {% assign paragraphs = desc | split: '<br />' %}
+        <div class="section-content">
+            {%for graph in paragraphs %}
+            <p>{{graph}}</p>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section data-section='Guest Artist' data-brackets='[]' class="work-section work-author">
+        {{r.name}}
+    </section>
+</section>
+{% endfor %}

@@ -1,0 +1,64 @@
+.toggleCommentForm {
+    display: inline-block;
+    animation: fade-in 200ms both;
+    transition: 100ms;
+    .form-active & {
+        transform: rotate(45deg);
+    }
+
+}
+
+.comment-form {
+
+    .input,
+    .comment-submit {
+        animation: fade-in 200ms both;
+        display: none;
+    }
+
+    &.form-active .input,
+    &.form-active .comment-submit {
+        display: inline;
+    }
+
+    line-height: 1;
+
+    .input {
+        margin-right: .2em;
+        margin-left: .2em;
+    }
+}
+
+.comments {
+    display: inline;
+}
+
+.comment {
+    list-style: none;
+    display: inline;
+    &.new {
+        animation: fade-in 200ms both;;
+    }
+
+    &:before,
+    &:after {
+        color: var(--black-hover);
+    }
+
+    &:before {
+        content: "(";
+    }
+
+    &:after {
+        content: ")";
+    }
+}
+
+.comment-meta {
+    display: none;
+    font-size: .8rem;
+}
+
+.comment-date {
+    display: none;
+}

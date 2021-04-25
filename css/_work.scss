@@ -1,0 +1,178 @@
+.works {
+    display: block;
+    width: 95vw;
+    text-align: left;
+    font-size: var(--ms-6);
+    letter-spacing: .03em;
+    line-height: .96;
+}
+
+.toggleWork {
+    appearance: none;
+    color: inherit;
+    background: none;
+    border: 0;
+    font-family: inherit;
+
+    &:hover {
+        color: var(--black-hover)
+    }
+}
+
+.work {
+    hyphens: auto;
+    display: inline;
+
+    button {
+        color: inherit;
+        background: transparent;
+        padding: 0;
+        border: 0;
+        letter-spacing: inherit;
+        line-height: 1;
+        display: inline;
+        appearance: none;
+        font-family: inherit;
+        cursor: none;
+
+        &:hover,
+        &.disabled {
+            color: var(--black-hover)
+        }
+    }
+
+    h2,
+    .section-content,
+    p,
+    div,
+    nav {
+        display: inline;
+    }
+
+    object {
+        pointer-events: none;
+        height: 4em;
+    }
+
+    .toggleTypeface {
+        appearance: none;
+        color: inherit;
+        background: none;
+        border: 0;
+        font-family: inherit;
+
+        &.active,
+        &:hover {
+            color: var(--black-hover);
+        }
+    }
+}
+
+.work-section {
+    display: none;
+    cursor: pointer;
+    animation: fade-in 200ms both;
+
+    &.open {
+        display: inline;
+    }
+
+    &[data-controls]:hover,
+    &[data-controls]:focus {
+        //color: var(--black-hover)
+    }
+}
+
+.work-images,
+.work-comments {
+    display: none;
+
+    &.open {
+        display: inline;
+    }
+}
+
+.work-title {
+    font-weight: 500;
+}
+
+.work-figure {
+    height: 4em;
+    padding: .1em;
+    vertical-align: top;
+    position: relative;
+    display: none;
+    animation: fade-in 200ms both;
+
+    &.active {
+        display: inline-block;
+    }
+
+    img {
+        height: 4em;
+        max-height: 100%;
+    }
+}
+
+.figure-expand {
+    position: absolute;
+    right: 10px;
+    opacity: 0;
+    transition: 200ms;
+    bottom: 10px;
+    display: block !important;
+    transform: skewX(0deg) !important;
+    mix-blend-mode: exclusion;
+
+    .work-figure:hover &,
+    .work-figure:focus & {
+        opacity: 1;
+    }
+
+    svg {
+        display: block;
+    }
+
+    path {
+        fill: white !important;
+    }
+}
+
+.work-description {
+    font-family: inherit;
+    max-width: 35em;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1.2;
+    letter-spacing: .07em;
+    word-spacing: .02em;
+    vertical-align: top;
+    padding-bottom: .5em;
+
+    p {
+        display: inline-block;
+    }
+
+    p+p {
+        text-indent: 2em;
+    }
+
+    &.open {
+        display: inline-block;
+    }
+}
+
+.bracket {
+    appearance: none;
+    line-break: anywhere;
+    background: none;
+    word-break: break-word;
+    border: 0;
+    font-family: inherit;
+    font-weight: 100;
+    line-height: 1;
+    display: inline;
+    color: inherit;
+    color: var(--black-hover);
+}

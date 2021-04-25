@@ -1,0 +1,40 @@
+{% assign alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ " | split : "" %}
+
+<style>
+    .roland .letter {
+        display: none;
+    }
+
+    .roland .letter[data-letter='A'],
+    .roland .letter.active {
+        display: inline;
+    }
+
+    .roland figure.active {
+        display: none;
+    }
+
+.roland .letter.open figure {
+        display: inline-block;
+    }
+</style>
+
+<div class="roland">
+    {% for letter in alphabet %}
+    {% brackets "[", 1 %}<span class="letter" data-letter="{{letter}}">
+        <button class="letter-expand">
+            {{letter}}
+        </button>
+        {% assign lastLetter = alphabet | last%}
+        {% if letter == lastLetter %}
+        <figure data-cursortext="arrowRight" style="height: 10em" data-original="Roland_0_M.mp4"
+        data-large="/assets/images/Roland_0_M.mp4" class="work-figure">
+        <video autoplay="" muted="" loop="" style="height: 10em"
+            src="/assets/images/Roland_0_M.mp4"></video><button data-cursortext="Expand"
+            class="figure-expand"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path d="M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17V19H5V14H7V17H10Z"></path>
+            </svg></button></figure>
+        {% endif %}
+        {% endfor %}
+        {% for letter in alphabet %}</span>{% brackets "[", 1 %}{% endfor %}
+</div>

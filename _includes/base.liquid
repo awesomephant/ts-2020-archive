@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Typographic Singularity 2020" />
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <title>Typographic Singularity 2020</title>
+</head>
+
+<body data-font="">
+    <div id="cursor" class='cursor-container'>
+        <span class="cursor-text"></span>
+    </div>
+    <div class="typeface-overlay" data-cursorText="Exit"></div>
+    {{ content | safe }}
+    <script src="/dist/main.js"></script>
+    <script src="/dist/cursor.js"></script>
+    <script src="/js/max/dist/max.js"></script>
+</body>
+</html>

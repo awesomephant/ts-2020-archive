@@ -1,0 +1,75 @@
+<style>
+    .jose-container {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 5000;
+        opacity: 0;
+        pointer-events: none;
+        transition: 200ms;
+    }
+    
+    .jose-container canvas {
+        background-color: transparent;
+        display: block;
+    }
+    
+    .jose-container.active {
+        pointer-events: all;
+        opacity: 1;
+    }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+<script src="/js/GLTFLoader.js"></script>
+<script>
+    var renderer, cube, scene, camera;
+    function initJose() {
+        const toggle = document.querySelector('.toggleJose')
+        const container = document.querySelector('.jose-container')
+        toggle.addEventListener('click', () => {
+            container.classList.add('active')
+        })
+        container.addEventListener('click', () => {
+            container.classList.remove('active')
+        })
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var loader = new THREE.GLTFLoader();
+
+        renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true
+        });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+        var light = new THREE.AmbientLight(0x404040, 3); // soft white light
+        scene.add(light);
+
+        var point = new THREE.PointLight(0xffffff, 6, 100);
+        point.position.set(50, 50, 50);
+        scene.add(point);
+
+        loader.load('/assets/jose-2.glb', function (gltf) {
+            scene.add(gltf.scene);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        camera.position.z = 5;
+        animate();
+    }
+
+    var animate = function () {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+        initJose()
+    })
+
+</script>
+
+<button class="toggleJose">Show model</button>

@@ -1,0 +1,135 @@
+---
+layout: base
+---
+
+<div class="lightbox" data-cursorText="Close">
+  <figure>
+    <img src="" alt="" class="lightbox-image">
+    <video src="" class='lightbox-video' autoplay loop muted></video>
+  </figure>
+</div>
+
+<ul class="site-users"></ul>
+<main class="works">
+  <div class="site-title">
+    <h1>
+      {% brackets "[", 10%}
+      <span>Typographic Singularity 2020</span>
+      {% brackets "]", 50%}
+    </h1>
+    <h2>
+      {% brackets "[", 1%}
+      An annual celebration of the eclectic and experimental use of typography and language in creative practices in the
+      {% link "https://www.rca.ac.uk/schools/school-of-communication/visual_communication/" %} Visual Communication
+      programme{% endlink %} at the {% link "https://www.rca.ac.uk/"%}Royal College of Art{% endlink %}
+      {% brackets "]", 50%}
+    </h2>
+  </div>
+
+  {% include pv %}
+
+  <nav class="controls">
+    <a href='#1' data-cursorText="Show Titles" data-section='title'
+      class="control active">{% brackets "{", 3 %}Titles{% brackets "}", 3 %}</a>
+    <a href='#1' data-cursorText="Show Work" data-section='images'
+      class="control">{% brackets "{", 3 %}Work{% brackets "}", 3 %}</a>
+    <a href='#1' data-cursorText="Show Texts" data-section='description'
+      class="control">{% brackets "{", 3 %}Texts{% brackets "}", 3 %}</a>
+    <a href='#1' data-cursorText="Show People" data-section='author'
+      class="control">{% brackets "{", 3 %}People{% brackets "}", 3 %}</a>
+    <a href='#1' data-cursorText="Show Responses" data-section='comments'
+      class="control">{% brackets "{", 3 %}Responses{% brackets "}", 3 %}</a>
+    <nav class="site-auth">
+      {% brackets "{", 3 %}
+      <a id='js-signin' class='auth-signin' href="#">Sign in with Google to
+        comment</a>
+      <span class="auth-user"></span>
+      {% brackets "}", 3 %}
+      <a class='auth-signout' href="#">{% brackets "{", 3 %}Sign out{% brackets "}", 3 %}</a>
+    </nav>
+  </nav>
+  {% brackets "]", 10%}
+
+  {% for p in projects %}
+  <div class="work" data-project="{{p.id}}">
+    {% brackets "{", 1%}
+    <section data-cursorText="arrowRight" data-controls="images" data-brackets='[]' data-section='title' class="work-section work-title">
+      <div class="section-content">
+        <h2>{{p.title | escape}}</h2>
+      </div>
+    </section>
+    <section data-controls="description" data-cursorText="arrowRight" data-section='work' data-brackets='[]' class="work-section work-images">
+      <div class="section-content">
+        {% if p.id == "14" %}
+        {% include max.liquid %}
+        {% endif %}
+       
+        {% if p.id == "17" %}
+        {% include meli.liquid %}
+        {% endif %}
+        
+        {% if p.id == "23" %}
+        {% include yehonathan.liquid %}
+        {% endif %}
+
+        {% assign images = p.images | split: ";" %}
+        {% if p.id != "20" %}
+        {% for img in images %}
+        {% fig img %}
+        {% endfor %}
+        {% endif %}
+        
+        {% if p.typeface != "" %}
+        {% assign fonts = p.typeface | split: ";" %}
+        {% for font in fonts %}
+        <button data-cursorText="Activate" class="toggleTypeface" data-typeface='{{font}}'>{% brackets "{", 1 %}{{font}}{% brackets "}", 1 %}</button>
+        {% endfor %}
+        {% endif %}
+
+        {% if p.id == "15" %}
+        {% include maya.liquid %}
+        {% endif %}
+
+        {% if p.id == "20" %}
+        {% include roland.liquid %}
+        {% endif %}
+
+      </div>
+    </section>
+
+    <section data-cursorText="arrowRight" data-controls="author" data-section='description' data-brackets='[]' class="work-section work-description">
+      {% capture desc %}{{p.description | escape | newline_to_br | strip_newlines}}{% endcapture %}
+      {%assign paragraphs = desc | split: '<br />'  %}
+      <div class="section-content">
+        {%for graph in paragraphs %}
+        <p>{{graph}}</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section data-cursorText="arrowRight" data-controls="comments" data-section='people' data-brackets='[]' class="work-section work-author">
+      <div class="section-content">
+        {% if p.website != "" %}
+        <h2>{% link p.website %}{{p.name | escape }}{% endlink %}</h2>
+        {% else %}
+        <h2>{{p.name | escape }}</h2>
+        {% endif %}
+      </div>
+    </section>
+
+    <section data-brackets='[]' data-section='Responses' class="work-section work-comments">
+      <ul class="comments" id='comment-list'></ul>
+      <div class="comment-form" data-project="{{p.id}}">
+        {% brackets "{", 1 %}<button data-cursorText="Sign in to respond" class="toggleCommentForm">+</button><span class="input" id="comment-input-{{p.id}}"
+          contenteditable></span><button
+          class="comment-submit disabled">{% brackets "{", 1 %}Send{% brackets "}", 1 %}</button>{% brackets "}", 1 %}
+      </div>
+    </section>
+    {% brackets "}", 1%}
+  </div>
+  {% endfor %}
+
+  {% include responses %}
+
+</main>
+<div class="max-container" data-cursorText="Exit"></div>

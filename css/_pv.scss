@@ -1,0 +1,27 @@
+.pv {
+    display: inline;
+
+    * {
+        color: var(--yellow) !important;
+        fill: var(--yellow) !important;
+    }
+}
+
+.pv-stream {
+    background-color: var(--yellow);
+    width: 10em;
+    height: 6em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.pv-response {
+
+    .bracket {
+        display: none;
+    }
+
+    &.open .bracket {
+        display: inline-block;
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "ts-archive",
+    "private": true,
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build:webpack": "webpack --mode production",
+        "build:eleventy": "npx @11ty/eleventy",
+        "watch:webpack": "webpack --watch --mode development",
+        "watch:sass": "sass ./css/style.scss ./_site/style.css --watch --no-source-map",
+        "watch:eleventy": "npx @11ty/eleventy --serve --quiet",
+        "start": "cross-env NODE_ENV=dev run-p watch:*",
+        "build": "cross-env NODE_ENV=production run-s build:*"
+    },
+    "author": "Max Kohler",
+    "license": "ISC",
+    "homepage": "/",
+    "dependencies": {
+        "@11ty/eleventy": "*",
+        "cross-env": "^7.0.3",
+        "html-minifier": "^4.0.0",
+        "npm-run-all": "^4.1.5",
+        "sass": "^1.29.0",
+        "webpack": "^5.21.2",
+        "webpack-cli": "^4.5.0"
+    }
+}

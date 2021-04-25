@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font-weight: inherit;
+    cursor: none;
+    &:focus {
+        outline: 0;
+    }
+}
+
+body {
+    font-weight: 100;
+    --background: var(--black);
+    --text: white;
+    padding: 1rem;
+    font-family: var(--sans);
+    display: grid;
+    background: var(--background);
+    color: var(--text);
+    cursor: none;
+    &.alternateColours {
+    }
+    &[data-font="BentonSans_carved.otf"] * {
+        font-family: benton;
+    }
+    &[data-font="XronikaGX.ttf"] * {
+        font-family: XronikaGX;
+        text-transform: lowercase;
+    }
+    &[data-font="Shiznit-Smooth.otf"] * {
+        font-family: "shiznit";
+    }
+    &[data-font="Shiznit-SmoothItalic.otf"] * {
+        font-family: "shiznit-it";
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

@@ -1,0 +1,43 @@
+.cursor-container {
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    z-index: 6000;
+    pointer-events: none;
+    background-color: var(--purple);
+    transition: width 200ms;
+    width: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0 .7em;
+    height: 1.5em;
+    line-height: 1;
+    align-items: center;
+    font-size: var(--ms-0);
+}
+
+.cursor-text {
+    color: white;
+    white-space: nowrap;
+    pointer-events: none;
+    line-height: 1.2;
+    font-family: haas, sans-serif !important;
+    word-spacing: .02em;
+    letter-spacing: .07em;
+    z-index: 7000;
+    font-weight: 500;
+    transition: 190ms opacity;
+    position: relative;
+    top: 1px;
+
+    path {
+        fill: white;
+    }
+
+    svg {
+        position: relative;
+        top: 1px;
+        width: 1em;
+    }
+}
