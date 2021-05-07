@@ -39,7 +39,6 @@
     &.new {
         animation: fade-in 200ms both;;
     }
-
     &:before,
     &:after {
         color: var(--black-hover);
@@ -52,13 +51,4 @@
     &:after {
         content: ")";
     }
-}
-
-.comment-meta {
-    display: none;
-    font-size: .8rem;
-}
-
-.comment-date {
-    display: none;
 }

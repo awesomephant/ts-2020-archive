@@ -1,4 +1,7 @@
 const htmlmin = require("html-minifier");
+const parse = require("csv-parse/lib/sync");
+const fs = require("fs");
+
 module.exports = function (eleventyConfig) {
     eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
         if (outputPath.endsWith(".html")) {
@@ -59,7 +62,6 @@ module.exports = function (eleventyConfig) {
 
         return `<span class="externalLink-wrapper">${content}<a href='${url}' data-cursorText="${prettyURL}" class='externalLink'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path class="cls-1" d="M23.8457.3068V22.21L22.248,23.6545V12.3607c0-3.3842,0-6.5781.0387-9.43L1.2581,23.6932.1543,22.5151,21.1829,1.7512c-2.8517.0387-6.0456.0387-9.3911.0387H.1543L1.5616.3068Z"/></svg></a></span>`
     });
-
     eleventyConfig.addPassthroughCopy("./js");
     eleventyConfig.addPassthroughCopy("./*.xml");
     eleventyConfig.addPassthroughCopy("./favicon.ico");

@@ -39,14 +39,6 @@ layout: base
       class="control">{% brackets "{", 3 %}People{% brackets "}", 3 %}</a>
     <a href='#1' data-cursorText="Show Responses" data-section='comments'
       class="control">{% brackets "{", 3 %}Responses{% brackets "}", 3 %}</a>
-    <nav class="site-auth">
-      {% brackets "{", 3 %}
-      <a id='js-signin' class='auth-signin' href="#">Sign in with Google to
-        comment</a>
-      <span class="auth-user"></span>
-      {% brackets "}", 3 %}
-      <a class='auth-signout' href="#">{% brackets "{", 3 %}Sign out{% brackets "}", 3 %}</a>
-    </nav>
   </nav>
   {% brackets "]", 10%}
 
@@ -117,10 +109,16 @@ layout: base
       </div>
     </section>
 
-    <section data-brackets='[]' data-section='Responses' class="work-section work-comments">
-      <ul class="comments" id='comment-list'></ul>
+    <section data-brackets='[]' data-section='Responses' class="work-section work-comments open">
+      <ul class="comments" id='comment-list'>
+        {% for comment in comments %}
+        {% if comment.project == p.id %}
+        <li data-cursorText="{{comment.author.name}}"  class="comment">{{comment.text}}</li>
+        {% endif %}
+        {% endfor %}
+      </ul>
       <div class="comment-form" data-project="{{p.id}}">
-        {% brackets "{", 1 %}<button data-cursorText="Sign in to respond" class="toggleCommentForm">+</button><span class="input" id="comment-input-{{p.id}}"
+        {% brackets "{", 1 %}<button data-cursorText="Comments are closed" class="toggleCommentForm">+</button><span class="input" id="comment-input-{{p.id}}"
           contenteditable></span><button
           class="comment-submit disabled">{% brackets "{", 1 %}Send{% brackets "}", 1 %}</button>{% brackets "}", 1 %}
       </div>
